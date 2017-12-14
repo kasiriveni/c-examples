@@ -1,0 +1,9 @@
+
+Name: nikhil 
+Marks=98 
+
+Name: manoj 
+Marks=95 
+
+Name: kiran 
+Marks=95 

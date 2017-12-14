@@ -1,0 +1,113 @@
+/*
+ * C Program to Find 2 Nodes with Longest Distance and Display
+ * using Inorder Traversal
+ *             40
+ *             /\
+ *           20 60
+ *           /\  \
+ *         10 30  80
+ *                 \
+ *                  90
+ */
+#include <stdio.h>
+#include <stdlib.h>
+
+struct btnode
+{
+   int value;
+   struct btnode *left, *right;
+};
+typedef struct btnode node;
+
+/* function prototypes */
+void insert(node *, node *);
+void inorder(node *);
+int  height(node *);
+
+node *temp, *root = NULL;
+
+void main()
+{
+    node *new = NULL ;
+    int num  = 1;
+
+    printf("Enter the elements of the tree(enter 0 to exit)\n");
+    while (1)
+    {
+        scanf("%d",  &num);
+        if (num == 0)
+            break;
+        new  =  malloc(sizeof(node));
+        new->left  =  new->right  =  NULL;
+        new->value  =  num;
+        if (root  == NULL)
+            root  =  new;
+        else
+        {
+            insert(new, root);
+        }
+    }
+    printf("elements in a tree in inorder are\n");
+    inorder(root);
+    height(root);
+}
+
+/* displaying nodes of a tree using inorder */
+void inorder(node *root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+        printf("%d -> ", root->value);
+        inorder(root->right);
+    }
+}
+
+/* inserting nodes into a tree */
+void insert(node * new , node *root)
+{
+    if (new->value>root->value)
+    {
+        if (root->right  == NULL)
+            root->right  =  new;
+        else
+            insert(new, root->right);
+    }
+    if (new->value<root->value)
+    {
+        if (root->left  == NULL)
+            root->left = new;
+        else
+            insert(new, root->left);
+    }
+}
+
+/* to find the longest path */
+int height(node *temp)
+{
+    temp = root;
+
+    if (temp  == NULL)
+        printf("tree is empty\n");
+    else
+    {
+        printf("\nlongest path is\n");
+        while (temp->left != NULL)
+        {
+            if (temp->left == NULL)
+                temp = temp->right;
+            else
+                temp = temp->left;
+        }
+        printf("%d ->", temp->value);
+        temp = root;
+        while (temp->right != NULL)
+        {
+              if (temp->right  == NULL)
+                temp = temp->left;
+            else
+                temp = temp->right;
+        }
+        printf(" %d", temp->value);
+    }
+}

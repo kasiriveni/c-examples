@@ -1,0 +1,5 @@
+ame    = manoj
+ame    = manoj
+1000000000000000000000000000000000n1000000000000000000000000000000000n
+
+ number of lines = 4 n number of words is = 6
